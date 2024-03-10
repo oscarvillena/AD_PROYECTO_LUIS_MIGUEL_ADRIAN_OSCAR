@@ -1,0 +1,10 @@
+CREATE SCHEMA proyectofinal;
+CREATE TABLE IF NOT EXISTS proyectofinal.producto (id_pro int PRIMARY KEY  AUTO_INCREMENT , nombre varchar(100), descripcion varchar(100), precio float ,img varchar(100));
+
+CREATE TABLE IF NOT EXISTS proyectofinal.usuario (id_use int PRIMARY KEY AUTO_INCREMENT, nombre varchar(100), contraseña varchar(100), correo varchar(100), foto varchar(100),admin BOOLEAN DEFAULT False);
+
+CREATE TABLE IF NOT EXISTS proyectofinal.reserva (id_res int PRIMARY KEY AUTO_INCREMENT, fALTA DATE, fBAJA DATE, id_use int, tipo varchar(100), FOREIGN KEY (id_use) REFERENCES usuario(id_use));
+
+CREATE TABLE IF NOT EXISTS proyectofinal.compras (id_com int PRIMARY KEY AUTO_INCREMENT, id_use int, FOREIGN KEY (id_use) REFERENCES usuario(id_use));
+
+CREATE TABLE IF NOT EXISTS  proyectofinal.factura (id_fac int PRIMARY KEY AUTO_INCREMENT, id_com int, id_pro int,cantidad int, FOREIGN KEY (id_com) REFERENCES compras(id_com), FOREIGN KEY (id_pro) REFERENCES producto(id_pro));
