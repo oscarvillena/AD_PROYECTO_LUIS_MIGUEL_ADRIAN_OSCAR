@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 28 feb 2024, 16:15:03 by Hibernate Tools 6.3.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="proyectofinal" name="Factura" optimistic-lock="none" table="factura">
+        <id name="idFac" type="java.lang.Integer">
+            <column name="id_fac"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="Compras" fetch="select" name="compras">
+            <column name="id_com"/>
+        </many-to-one>
+        <many-to-one class="Producto" fetch="select" name="producto">
+            <column name="id_pro"/>
+        </many-to-one>
+        <property name="cantidad" type="java.lang.Integer">
+            <column name="cantidad"/>
+        </property>
+    </class>
+</hibernate-mapping>

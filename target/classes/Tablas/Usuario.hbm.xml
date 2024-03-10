@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 28 feb 2024, 16:15:03 by Hibernate Tools 6.3.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="proyectofinal" name="Usuario" optimistic-lock="none" table="usuario">
+        <id name="idUse" type="java.lang.Integer">
+            <column name="id_use"/>
+            <generator class="identity"/>
+        </id>
+        <property name="nombre" type="string">
+            <column length="100" name="nombre"/>
+        </property>
+        <property name="contraseña" type="string">
+            <column length="100" name="contraseña"/>
+        </property>
+        <property name="correo" type="string">
+            <column length="100" name="correo"/>
+        </property>
+        <property name="foto" type="string">
+            <column length="100" name="foto"/>
+        </property>
+        <property name="admin" type="java.lang.Boolean">
+            <column name="admin"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="reservas" table="reserva">
+            <key>
+                <column name="id_use"/>
+            </key>
+            <one-to-many class="Reserva"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="comprases" table="compras">
+            <key>
+                <column name="id_use"/>
+            </key>
+            <one-to-many class="Compras"/>
+        </set>
+    </class>
+</hibernate-mapping>

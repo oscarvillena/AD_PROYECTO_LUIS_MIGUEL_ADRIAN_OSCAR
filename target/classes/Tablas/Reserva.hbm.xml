@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 28 feb 2024, 16:15:03 by Hibernate Tools 6.3.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="proyectofinal" name="Reserva" optimistic-lock="none" table="reserva">
+        <id name="idRes" type="java.lang.Integer">
+            <column name="id_res"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="Usuario" fetch="select" name="usuario">
+            <column name="id_use"/>
+        </many-to-one>
+        <property name="falta" type="date">
+            <column length="10" name="fALTA"/>
+        </property>
+        <property name="fbaja" type="date">
+            <column length="10" name="fBAJA"/>
+        </property>
+        <property name="tipo" type="string">
+            <column length="100" name="tipo"/>
+        </property>
+    </class>
+</hibernate-mapping>

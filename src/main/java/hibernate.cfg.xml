@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.password">root</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/proyectofinal</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        
+
+        <mapping class = "Tablas.Usuario" package="Tablas" resource= "Tablas.Usuario.hbm.xml"/>
+        <mapping class = "Tablas.Producto" package="Tablas" resource= "Tablas.Producto.hbm.xml"/>
+        <mapping class = "Tablas.Compras" package="Tablas" resource= "Tablas.Compras.hbm.xml"/>
+        <mapping class = "Tablas.Factura" package="Tablas" resource= "Tablas.Factura.hbm.xml"/>
+        <mapping class = "Tablas.Reserva" package="Tablas" resource= "Tablas.Reserva.hbm.xml"/>
+        
+    </session-factory>
+</hibernate-configuration>
