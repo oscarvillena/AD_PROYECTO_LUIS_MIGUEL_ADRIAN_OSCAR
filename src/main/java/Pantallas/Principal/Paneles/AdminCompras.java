@@ -37,6 +37,7 @@ public class AdminCompras extends javax.swing.JDialog implements Runnable{
         formatearTabla();
         llenarUsers();
         new Thread(this).start();
+        total = 0;
     }
     
     public void formatearTabla(){
@@ -54,8 +55,10 @@ public class AdminCompras extends javax.swing.JDialog implements Runnable{
             List <Factura> facturas = new FacturaDAO().readRecords(Integer.parseInt(cbCompra.getSelectedItem()+""));
             for(int i= 0; i <facturas.size(); i++){
                 Factura f = facturas.get(i);
-                tabla.addRow(new ProductoDao().readRecord(f.getProducto().getIdPro()).toArrayString(f.getCantidad()));
+                Producto p = new ProductoDao().readRecord(f.getProducto().getIdPro());
+                tabla.addRow(p.toArrayString(f.getCantidad()));
             }
+            
          });
     }
     public void seleccionaruser(){
@@ -92,7 +95,6 @@ public class AdminCompras extends javax.swing.JDialog implements Runnable{
         cbCompra = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        lblPrecio = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabla = new javax.swing.JTable();
 
@@ -120,10 +122,6 @@ public class AdminCompras extends javax.swing.JDialog implements Runnable{
         jLabel3.setForeground(new java.awt.Color(255, 255, 51));
         jLabel3.setText("Usuario");
 
-        lblPrecio.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        lblPrecio.setForeground(new java.awt.Color(255, 255, 51));
-        lblPrecio.setText("PrecioTotal:");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -134,15 +132,13 @@ public class AdminCompras extends javax.swing.JDialog implements Runnable{
                         .addGap(15, 15, 15)
                         .addComponent(cbUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(48, 48, 48)
-                        .addComponent(cbCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cbCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(90, 90, 90)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(294, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,8 +150,7 @@ public class AdminCompras extends javax.swing.JDialog implements Runnable{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblPrecio))
+                    .addComponent(cbUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19))
         );
 
@@ -196,7 +191,7 @@ public class AdminCompras extends javax.swing.JDialog implements Runnable{
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1);
@@ -215,7 +210,6 @@ public class AdminCompras extends javax.swing.JDialog implements Runnable{
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblPrecio;
     // End of variables declaration//GEN-END:variables
 
     public void run() {
